@@ -1,7 +1,6 @@
 # Dev log
 
 Running log of decisions and traps — what I chose, what broke, what I'd still fix.
-(Doubles as raw material for the Marketing Engineering cert "build" depth-path.)
 
 ## M0 — the feature-routing primitive
 
