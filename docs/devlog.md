@@ -22,3 +22,9 @@ Running log of decisions and traps — what I chose, what broke, what I'd still 
 - **Decision:** a *separate* extractor call (system prompt = "extract, don't invent") rather than asking the answering model to self-structure — keeps the two jobs clean (the LLM-as-judge pattern).
 - **Result:** clean prose→JSON on the credential-rotation prompt; correctly captured role/position/sentiment/attributes; citations empty (no browsing), as expected.
 - **Trap noted:** attributes come out verbose/sentence-like ("securely stores database credentials") — want tighter, normalized phrasing later for the positioning map. Product-name normalization (Vault vs HashiCorp Vault) handled by the prompt for now; may need an alias map at scale.
+
+## M1 — sampling + multi-provider → routing share
+- **Decision:** providers are key-gated (`providers.py`): OpenAI / Anthropic / Perplexity / Gemini, but only those with a key run. OpenAI + Perplexity share the OpenAI-compatible API (different base_url). SDKs lazy-imported so missing ones never crash.
+- **Decision:** `routing_share` = exactly ONE primary per sample (top-ranked recommendation) → sums to ~100% = clean "feature ownership." Kept mention_rate / avg_position / sentiment for context. Added an alias map (`metrics.py`) to normalize product names.
+- **Trap fixed:** extractor over-captured generic infra (PostgreSQL, RDS, Ansible) as products → tightened the extraction system prompt to only count tools offered as the *solution*.
+- **Result (OpenAI, N=5):** "automated secret rotation" → AWS Secrets Manager 60% / Vault 40%; "dynamic secrets" → Vault 100%. Ownership genuinely varies by feature.

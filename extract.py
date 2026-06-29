@@ -64,7 +64,10 @@ EXTRACTION_SYSTEM = (
     "1-based position in the answer, the sentiment toward it, and the descriptive "
     "attributes used about it. Capture any cited source URLs. Do NOT invent products or "
     "attributes not present in the text. Use each product's canonical name "
-    "(e.g. 'Vault' -> 'HashiCorp Vault')."
+    "(e.g. 'Vault' -> 'HashiCorp Vault'). Only include named products/tools/services "
+    "offered as a SOLUTION to the need (e.g. secret managers, IaC tools, scanners). Do "
+    "NOT list generic databases, programming languages, or cloud primitives that are "
+    "merely mentioned in passing (e.g. PostgreSQL, MySQL, a raw cron job)."
 )
 
 
