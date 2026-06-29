@@ -6,5 +6,8 @@ __pycache__/
 # Secrets — never commit real keys
 .env
 
+# Local database (binary; the dashboard reads an exported JSON snapshot instead)
+*.db
+
 # OS
 .DS_Store

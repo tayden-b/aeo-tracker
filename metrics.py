@@ -34,6 +34,15 @@ ALIASES: dict[str, str] = {
     "infisical": "Infisical",
     "doppler": "Doppler",
     "trufflehog": "TruffleHog",
+    "gitleaks": "Gitleaks",
+    "git-secrets": "git-secrets",
+    "git secrets": "git-secrets",
+    "gitsecrets": "git-secrets",
+    "detect-secrets": "detect-secrets",
+    "detect secrets": "detect-secrets",
+    "snyk": "Snyk",
+    "talisman": "Talisman",
+    "sops": "SOPS",
 }
 
 

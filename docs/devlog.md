@@ -28,3 +28,10 @@ Running log of decisions and traps — what I chose, what broke, what I'd still 
 - **Decision:** `routing_share` = exactly ONE primary per sample (top-ranked recommendation) → sums to ~100% = clean "feature ownership." Kept mention_rate / avg_position / sentiment for context. Added an alias map (`metrics.py`) to normalize product names.
 - **Trap fixed:** extractor over-captured generic infra (PostgreSQL, RDS, Ansible) as products → tightened the extraction system prompt to only count tools offered as the *solution*.
 - **Result (OpenAI, N=5):** "automated secret rotation" → AWS Secrets Manager 60% / Vault 40%; "dynamic secrets" → Vault 100%. Ownership genuinely varies by feature.
+
+## M2 — persistence + rollups + runner
+- **Decision:** SQLite (`db.py`), zero-setup local DB; schema is plain SQL so it ports to Postgres/Supabase later. Tables: runs, routings, citations, rollups.
+- **Decision:** `run.py` = the daily heartbeat (cron-able): sample → extract → persist → build rollups. `rollup.py` aggregates per (provider, feature) plus a 'blended' all-providers view, reusing `metrics.routing_share`.
+- **Decision:** `*.db` gitignored (binary churn); the dashboard reads a JSON export instead.
+- **Result:** 12 runs → 86 rollup rows; blended leaderboards correct (rotation AWS/Vault 50/50; dynamic secrets AWS 75/Vault 25; scanning GitGuardian/GitLeaks lead).
+- **Trap noted:** extractor still leaks some non-tools (pgbouncer, IAM roles) and casing dupes (GitLeaks/Gitleaks) at low mention rates → added more aliases; dashboard will filter to meaningful products (mention_rate ≥ 0.5 or routing > 0, top N).
