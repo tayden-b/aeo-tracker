@@ -54,6 +54,9 @@ def _write_group(conn, run_date, provider, category, feature, extractions) -> in
 
 
 def build_rollups(conn, run_date: str) -> int:
+    # clear this date's rollups first so rebuilds are idempotent (no stale rows
+    # when normalization/aliases change)
+    conn.execute("DELETE FROM rollups WHERE run_date = ?", (run_date,))
     runs = db.fetch_runs(conn, run_date)
     # group runs by (provider, category, feature) and also (blended, category, feature)
     by_provider = defaultdict(list)

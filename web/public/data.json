@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T00:08:47.670816+00:00",
+  "generated_at": "2026-06-29T00:17:50.364759+00:00",
   "latest_date": "2026-06-29",
   "dates": [
     "2026-06-29"
@@ -226,23 +226,23 @@
       "feature": "secret scanning",
       "leaderboard": [
         {
+          "product": "Gitleaks",
+          "routing_share": 0.5,
+          "mention_rate": 1.0,
+          "avg_position": 2.0,
+          "sentiment": {
+            "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
           "product": "GitGuardian",
           "routing_share": 0.5,
           "mention_rate": 0.75,
           "avg_position": 1.67,
           "sentiment": {
             "positive": 3,
-            "neutral": 0,
-            "negative": 0
-          }
-        },
-        {
-          "product": "GitLeaks",
-          "routing_share": 0.5,
-          "mention_rate": 0.5,
-          "avg_position": 1.0,
-          "sentiment": {
-            "positive": 2,
             "neutral": 0,
             "negative": 0
           }
@@ -259,12 +259,23 @@
           }
         },
         {
-          "product": "Detect Secrets",
+          "product": "detect-secrets",
           "routing_share": 0.0,
           "mention_rate": 1.0,
           "avg_position": 4.5,
           "sentiment": {
             "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "git-secrets",
+          "routing_share": 0.0,
+          "mention_rate": 0.75,
+          "avg_position": 4.0,
+          "sentiment": {
+            "positive": 3,
             "neutral": 0,
             "negative": 0
           }
@@ -279,27 +290,16 @@
             "neutral": 0,
             "negative": 0
           }
-        },
-        {
-          "product": "Gitleaks",
-          "routing_share": 0.0,
-          "mention_rate": 0.5,
-          "avg_position": 3.0,
-          "sentiment": {
-            "positive": 2,
-            "neutral": 0,
-            "negative": 0
-          }
         }
       ],
       "by_provider": {
         "openai": [
           {
-            "product": "GitGuardian",
+            "product": "Gitleaks",
             "routing_share": 0.5
           },
           {
-            "product": "GitLeaks",
+            "product": "GitGuardian",
             "routing_share": 0.5
           },
           {
@@ -307,27 +307,27 @@
             "routing_share": 0.0
           },
           {
-            "product": "Detect Secrets",
+            "product": "detect-secrets",
+            "routing_share": 0.0
+          },
+          {
+            "product": "git-secrets",
             "routing_share": 0.0
           },
           {
             "product": "Snyk",
             "routing_share": 0.0
-          },
-          {
-            "product": "Gitleaks",
-            "routing_share": 0.0
           }
         ]
       },
       "trend": {
-        "GitGuardian": [
+        "Gitleaks": [
           {
             "date": "2026-06-29",
             "routing_share": 0.5
           }
         ],
-        "GitLeaks": [
+        "GitGuardian": [
           {
             "date": "2026-06-29",
             "routing_share": 0.5
@@ -339,19 +339,19 @@
             "routing_share": 0.0
           }
         ],
-        "Detect Secrets": [
+        "detect-secrets": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
+        "git-secrets": [
           {
             "date": "2026-06-29",
             "routing_share": 0.0
           }
         ],
         "Snyk": [
-          {
-            "date": "2026-06-29",
-            "routing_share": 0.0
-          }
-        ],
-        "Gitleaks": [
           {
             "date": "2026-06-29",
             "routing_share": 0.0

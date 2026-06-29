@@ -41,7 +41,9 @@ function read<T>(file: string, fallback: T): T {
   }
 }
 
-const isTarget = (name: string) => /vault|terraform/i.test(name);
+// products we track to win (exact canonical names; avoids matching "Azure Key Vault")
+const TARGETS = new Set(["HashiCorp Vault", "Terraform"]);
+const isTarget = (name: string) => TARGETS.has(name);
 
 function Bar({ p, leader }: { p: Product; leader: boolean }) {
   const pct = Math.round(p.routing_share * 100);
