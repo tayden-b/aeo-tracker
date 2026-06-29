@@ -35,3 +35,19 @@ Running log of decisions and traps — what I chose, what broke, what I'd still 
 - **Decision:** `*.db` gitignored (binary churn); the dashboard reads a JSON export instead.
 - **Result:** 12 runs → 86 rollup rows; blended leaderboards correct (rotation AWS/Vault 50/50; dynamic secrets AWS 75/Vault 25; scanning GitGuardian/GitLeaks lead).
 - **Trap noted:** extractor still leaks some non-tools (pgbouncer, IAM roles) and casing dupes (GitLeaks/Gitleaks) at low mention rates → added more aliases; dashboard will filter to meaningful products (mention_rate ≥ 0.5 or routing > 0, top N).
+
+## M3 — dashboard
+- **Decision:** clean seam — Python `export.py` writes `web/public/data.json`; the dashboard just renders it. Static-friendly (no live DB), deploys to Vercel.
+- **Decision:** Next.js 16 + Tailwind v4 (`web/`). Dashboard is a Server Component that reads the JSON at build time with `fs` (no client fetch, prerenders static).
+- **Decision:** filter one-off extraction noise in the export (keep products with routing > 0 or mention ≥ 0.5, top 8); highlight tracked products (Vault/Terraform) in violet.
+- **Wiring:** `run.py` now exports `data.json` at the end of each run, so the dashboard stays fresh.
+- **Result:** `next build` passes; `/` prerenders as static. Feature-ownership bars + recommendations render from real data.
+
+## M4 — recommendation + alert layer
+- **Decision:** `recommend.py` reads rollups, finds features where a TARGET product (Vault→secrets, Terraform→IaC) isn't the AI's default, and an LLM drafts a 2–3 sentence PMM brief per gap (the "recommendation agent"). Writes `web/public/recommendations.json`.
+- **Alerts:** flags a ≥20pt routing-share drop for a target between runs (needs ≥2 run dates to fire).
+- **Result:** generated real briefs for Vault on rotation/dynamic-secrets/scanning; 0 alerts (single run date so far).
+- **Trap noted:** target↔category relevance is coarse (Vault gets recommended for "secret scanning," which isn't really its job). Fine as an "absent from this feature" signal; would refine with a per-target feature allowlist.
+
+## Status
+M0–M4 complete: full pipeline runs end-to-end (prompt → multi-provider sampling → extraction → SQLite → rollups → export → dashboard + recommendations). Public repo live. Remaining for a polished public launch: more run dates for real trends, add the other provider keys (esp. Perplexity for citations), deploy `web/` to Vercel, and a POV writeup.
