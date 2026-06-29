@@ -18,6 +18,7 @@ import argparse
 from datetime import datetime, timezone
 
 import db
+from export import export
 from extract import extract
 from features import FEATURES
 from providers import PROVIDERS, available_providers, get_answer
@@ -67,6 +68,10 @@ def main() -> None:
     n_roll = build_rollups(conn, run_date)
     print(f"Wrote {n_roll} rollup rows.")
     conn.close()
+
+    out = export()
+    print(f"Exported dashboard data -> {out}")
+    print("(Run `python recommend.py` to refresh recommendations + alerts.)")
 
 
 if __name__ == "__main__":

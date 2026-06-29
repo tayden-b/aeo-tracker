@@ -1,0 +1,363 @@
+{
+  "generated_at": "2026-06-29T00:08:47.670816+00:00",
+  "latest_date": "2026-06-29",
+  "dates": [
+    "2026-06-29"
+  ],
+  "providers": [
+    "openai"
+  ],
+  "features": [
+    {
+      "category": "secrets-management",
+      "feature": "automated secret rotation",
+      "leaderboard": [
+        {
+          "product": "AWS Secrets Manager",
+          "routing_share": 0.5,
+          "mention_rate": 1.0,
+          "avg_position": 1.5,
+          "sentiment": {
+            "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "HashiCorp Vault",
+          "routing_share": 0.5,
+          "mention_rate": 1.0,
+          "avg_position": 1.5,
+          "sentiment": {
+            "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Google Cloud Secret Manager",
+          "routing_share": 0.0,
+          "mention_rate": 0.75,
+          "avg_position": 3.67,
+          "sentiment": {
+            "positive": 3,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Azure Key Vault",
+          "routing_share": 0.0,
+          "mention_rate": 0.5,
+          "avg_position": 3.0,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          }
+        }
+      ],
+      "by_provider": {
+        "openai": [
+          {
+            "product": "AWS Secrets Manager",
+            "routing_share": 0.5
+          },
+          {
+            "product": "HashiCorp Vault",
+            "routing_share": 0.5
+          },
+          {
+            "product": "Google Cloud Secret Manager",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Azure Key Vault",
+            "routing_share": 0.0
+          }
+        ]
+      },
+      "trend": {
+        "AWS Secrets Manager": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.5
+          }
+        ],
+        "HashiCorp Vault": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.5
+          }
+        ],
+        "Google Cloud Secret Manager": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
+        "Azure Key Vault": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "category": "secrets-management",
+      "feature": "dynamic secrets",
+      "leaderboard": [
+        {
+          "product": "AWS Secrets Manager",
+          "routing_share": 0.75,
+          "mention_rate": 1.0,
+          "avg_position": 1.25,
+          "sentiment": {
+            "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "HashiCorp Vault",
+          "routing_share": 0.25,
+          "mention_rate": 1.0,
+          "avg_position": 1.5,
+          "sentiment": {
+            "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Azure Key Vault",
+          "routing_share": 0.0,
+          "mention_rate": 0.5,
+          "avg_position": 2.0,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Google Cloud SQL",
+          "routing_share": 0.0,
+          "mention_rate": 0.5,
+          "avg_position": 3.0,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Kubernetes Secrets",
+          "routing_share": 0.0,
+          "mention_rate": 0.5,
+          "avg_position": 2.0,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          }
+        }
+      ],
+      "by_provider": {
+        "openai": [
+          {
+            "product": "AWS Secrets Manager",
+            "routing_share": 0.75
+          },
+          {
+            "product": "HashiCorp Vault",
+            "routing_share": 0.25
+          },
+          {
+            "product": "Azure Key Vault",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Google Cloud SQL",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Kubernetes Secrets",
+            "routing_share": 0.0
+          }
+        ]
+      },
+      "trend": {
+        "AWS Secrets Manager": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.75
+          }
+        ],
+        "HashiCorp Vault": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.25
+          }
+        ],
+        "Azure Key Vault": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
+        "Google Cloud SQL": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
+        "Kubernetes Secrets": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "category": "secrets-management",
+      "feature": "secret scanning",
+      "leaderboard": [
+        {
+          "product": "GitGuardian",
+          "routing_share": 0.5,
+          "mention_rate": 0.75,
+          "avg_position": 1.67,
+          "sentiment": {
+            "positive": 3,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "GitLeaks",
+          "routing_share": 0.5,
+          "mention_rate": 0.5,
+          "avg_position": 1.0,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "TruffleHog",
+          "routing_share": 0.0,
+          "mention_rate": 1.0,
+          "avg_position": 2.0,
+          "sentiment": {
+            "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Detect Secrets",
+          "routing_share": 0.0,
+          "mention_rate": 1.0,
+          "avg_position": 4.5,
+          "sentiment": {
+            "positive": 4,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Snyk",
+          "routing_share": 0.0,
+          "mention_rate": 0.5,
+          "avg_position": 5.5,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          }
+        },
+        {
+          "product": "Gitleaks",
+          "routing_share": 0.0,
+          "mention_rate": 0.5,
+          "avg_position": 3.0,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          }
+        }
+      ],
+      "by_provider": {
+        "openai": [
+          {
+            "product": "GitGuardian",
+            "routing_share": 0.5
+          },
+          {
+            "product": "GitLeaks",
+            "routing_share": 0.5
+          },
+          {
+            "product": "TruffleHog",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Detect Secrets",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Snyk",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Gitleaks",
+            "routing_share": 0.0
+          }
+        ]
+      },
+      "trend": {
+        "GitGuardian": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.5
+          }
+        ],
+        "GitLeaks": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.5
+          }
+        ],
+        "TruffleHog": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
+        "Detect Secrets": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
+        "Snyk": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
+        "Gitleaks": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ]
+      }
+    }
+  ]
+}

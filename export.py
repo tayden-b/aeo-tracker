@@ -54,22 +54,28 @@ def export() -> Path:
             for r in rows
             if r["provider"] == "blended" and r["run_date"] == latest
         ]
-        blended_latest.sort(key=lambda p: p["routing_share"], reverse=True)
+        blended_latest.sort(key=lambda p: (p["routing_share"], p["mention_rate"]), reverse=True)
+        # keep only meaningful products (drop one-off extraction noise), cap to top 8
+        leaderboard = [
+            p for p in blended_latest
+            if p["routing_share"] > 0 or p["mention_rate"] >= 0.5
+        ][:8]
+        shown = {p["product"] for p in leaderboard}
 
-        # per-provider leaderboards (latest date)
+        # per-provider leaderboards (latest date), limited to shown products
         by_provider: dict[str, list] = defaultdict(list)
         for r in rows:
-            if r["provider"] != "blended" and r["run_date"] == latest:
+            if r["provider"] != "blended" and r["run_date"] == latest and r["product"] in shown:
                 by_provider[r["provider"]].append(
                     {"product": r["product"], "routing_share": r["routing_share"]}
                 )
         for p in by_provider.values():
             p.sort(key=lambda x: x["routing_share"], reverse=True)
 
-        # routing-share trend over dates (blended), per product
+        # routing-share trend over dates (blended), per shown product
         trend: dict[str, list] = defaultdict(list)
         for r in rows:
-            if r["provider"] == "blended":
+            if r["provider"] == "blended" and r["product"] in shown:
                 trend[r["product"]].append(
                     {"date": r["run_date"], "routing_share": r["routing_share"]}
                 )
@@ -79,7 +85,7 @@ def export() -> Path:
         features.append({
             "category": category,
             "feature": feature,
-            "leaderboard": blended_latest,
+            "leaderboard": leaderboard,
             "by_provider": dict(by_provider),
             "trend": dict(trend),
         })
