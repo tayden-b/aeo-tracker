@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T16:30:49.489306+00:00",
+  "generated_at": "2026-06-30T22:12:08.950743+00:00",
   "latest_date": "2026-06-29",
   "dates": [
     "2026-06-24",
@@ -10,15 +10,17 @@
     "2026-06-29"
   ],
   "providers": [
+    "gemini",
     "openai"
   ],
   "overview": {
     "features": 6,
-    "engines": 1,
+    "engines": 2,
     "engine_names": [
+      "gemini",
       "openai"
     ],
-    "samples": 108,
+    "samples": 126,
     "dates": 6,
     "tracked_leads": {
       "Terraform": 2,
@@ -37,13 +39,14 @@
           "mention_rate": 1.0,
           "avg_position": 1.0,
           "sentiment": {
-            "positive": 3,
+            "positive": 6,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
             "drift detection",
             "iac",
+            "iac tool",
             "configuration files",
             "plan command",
             "cloud resources"
@@ -55,23 +58,61 @@
           "mention_rate": 1.0,
           "avg_position": 3.0,
           "sentiment": {
-            "positive": 3,
+            "positive": 6,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
+            "drift detection",
             "iac",
+            "iac tool",
             "preview",
             "resource differences",
+            "built-in"
+          ]
+        },
+        {
+          "product": "AWS CloudFormation",
+          "routing_share": 0.0,
+          "mention_rate": 0.833,
+          "avg_position": 2.8,
+          "sentiment": {
+            "positive": 5,
+            "neutral": 0,
+            "negative": 0
+          },
+          "attributes": [
+            "drift detection",
+            "aws",
             "built-in",
-            "change detection",
-            "programming languages"
+            "resource configuration",
+            "aws-native",
+            "integrated features"
+          ]
+        },
+        {
+          "product": "AWS Config",
+          "routing_share": 0.0,
+          "mention_rate": 0.833,
+          "avg_position": 3.0,
+          "sentiment": {
+            "positive": 5,
+            "neutral": 0,
+            "negative": 0
+          },
+          "attributes": [
+            "configuration assessment",
+            "monitoring service",
+            "compliance rules",
+            "managed service",
+            "change notifications",
+            "resource inventory"
           ]
         },
         {
           "product": "ArgoCD",
           "routing_share": 0.0,
-          "mention_rate": 1.0,
+          "mention_rate": 0.5,
           "avg_position": 7.33,
           "sentiment": {
             "positive": 3,
@@ -88,91 +129,60 @@
           ]
         },
         {
-          "product": "Terraform Cloud",
+          "product": "InSpec",
           "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 1.5,
+          "mention_rate": 0.5,
+          "avg_position": 11.67,
           "sentiment": {
             "positive": 2,
-            "neutral": 0,
+            "neutral": 1,
             "negative": 0
           },
           "attributes": [
             "drift detection",
-            "hashicorp",
-            "additional features",
-            "automated",
-            "advanced"
-          ]
-        },
-        {
-          "product": "AWS CloudFormation",
-          "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 4.0,
-          "sentiment": {
-            "positive": 2,
-            "neutral": 0,
-            "negative": 0
-          },
-          "attributes": [
-            "drift detection",
-            "aws",
-            "built-in",
-            "resource configuration"
-          ]
-        },
-        {
-          "product": "Flux",
-          "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 7.0,
-          "sentiment": {
-            "positive": 2,
-            "neutral": 0,
-            "negative": 0
-          },
-          "attributes": [
-            "gitops",
-            "syncs state",
-            "deployment management",
-            "kubernetes",
-            "drift correction"
-          ]
-        },
-        {
-          "product": "Terraformer",
-          "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 9.5,
-          "sentiment": {
-            "positive": 2,
-            "neutral": 0,
-            "negative": 0
-          },
-          "attributes": [
-            "generate terraform",
-            "existing infrastructure",
-            "compare"
+            "compliance framework",
+            "test infrastructure",
+            "desired state",
+            "auditing",
+            "testing profiles"
           ]
         },
         {
           "product": "Open Policy Agent",
           "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 7.5,
+          "mention_rate": 0.5,
+          "avg_position": 8.33,
           "sentiment": {
-            "positive": 1,
+            "positive": 2,
             "neutral": 1,
             "negative": 0
           },
           "attributes": [
+            "drift detection",
             "enforce policies",
             "existing infrastructure",
             "prevent changes",
             "policy enforcement",
-            "configuration testing",
-            "drift detection"
+            "configuration testing"
+          ]
+        },
+        {
+          "product": "Azure Policy",
+          "routing_share": 0.0,
+          "mention_rate": 0.5,
+          "avg_position": 5.33,
+          "sentiment": {
+            "positive": 3,
+            "neutral": 0,
+            "negative": 0
+          },
+          "attributes": [
+            "compliance assessment",
+            "compliance enforcement",
+            "azure-native",
+            "configuration rules",
+            "organizational standards",
+            "resource governance"
           ]
         }
       ],
@@ -191,19 +201,45 @@
             "routing_share": 0.0
           },
           {
-            "product": "Terraform Cloud",
+            "product": "AWS CloudFormation",
             "routing_share": 0.0
+          },
+          {
+            "product": "Open Policy Agent",
+            "routing_share": 0.0
+          },
+          {
+            "product": "AWS Config",
+            "routing_share": 0.0
+          },
+          {
+            "product": "InSpec",
+            "routing_share": 0.0
+          }
+        ],
+        "gemini": [
+          {
+            "product": "Terraform",
+            "routing_share": 1.0
           },
           {
             "product": "AWS CloudFormation",
             "routing_share": 0.0
           },
           {
-            "product": "Flux",
+            "product": "Pulumi",
             "routing_share": 0.0
           },
           {
-            "product": "Terraformer",
+            "product": "AWS Config",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Azure Policy",
+            "routing_share": 0.0
+          },
+          {
+            "product": "InSpec",
             "routing_share": 0.0
           },
           {
@@ -239,6 +275,32 @@
             "routing_share": 1.0
           }
         ],
+        "AWS Config": [
+          {
+            "date": "2026-06-24",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-25",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-26",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-27",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-28",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
+          }
+        ],
         "Pulumi": [
           {
             "date": "2026-06-24",
@@ -265,13 +327,9 @@
             "routing_share": 0.0
           }
         ],
-        "ArgoCD": [
+        "InSpec": [
           {
             "date": "2026-06-25",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-27",
             "routing_share": 0.0
           },
           {
@@ -283,13 +341,9 @@
             "routing_share": 0.0
           }
         ],
-        "Flux": [
+        "ArgoCD": [
           {
             "date": "2026-06-25",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-26",
             "routing_share": 0.0
           },
           {
@@ -341,17 +395,7 @@
             "routing_share": 0.0
           }
         ],
-        "Terraformer": [
-          {
-            "date": "2026-06-26",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-29",
-            "routing_share": 0.0
-          }
-        ],
-        "Terraform Cloud": [
+        "Azure Policy": [
           {
             "date": "2026-06-27",
             "routing_share": 0.0
@@ -370,30 +414,30 @@
       "leaderboard": [
         {
           "product": "Open Policy Agent",
-          "routing_share": 0.333,
+          "routing_share": 0.667,
           "mention_rate": 1.0,
-          "avg_position": 1.67,
+          "avg_position": 1.33,
           "sentiment": {
-            "positive": 3,
+            "positive": 6,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
             "general-purpose",
+            "flexible",
             "policy engine",
             "integrated systems",
             "versatile",
-            "declarative language",
-            "integration"
+            "declarative language"
           ]
         },
         {
           "product": "Terraform Sentinel",
-          "routing_share": 0.333,
-          "mention_rate": 0.667,
-          "avg_position": 1.5,
+          "routing_share": 0.167,
+          "mention_rate": 0.5,
+          "avg_position": 1.67,
           "sentiment": {
-            "positive": 2,
+            "positive": 3,
             "neutral": 0,
             "negative": 0
           },
@@ -408,8 +452,8 @@
         },
         {
           "product": "HashiCorp Sentinel",
-          "routing_share": 0.333,
-          "mention_rate": 0.333,
+          "routing_share": 0.167,
+          "mention_rate": 0.167,
           "avg_position": 1.0,
           "sentiment": {
             "positive": 1,
@@ -425,39 +469,39 @@
         {
           "product": "Checkov",
           "routing_share": 0.0,
-          "mention_rate": 1.0,
-          "avg_position": 3.67,
+          "mention_rate": 0.833,
+          "avg_position": 4.6,
           "sentiment": {
-            "positive": 3,
-            "neutral": 0,
+            "positive": 4,
+            "neutral": 1,
             "negative": 0
           },
           "attributes": [
             "open-source",
+            "static analysis",
             "scan",
             "security compliance",
             "static analysis tool",
-            "policy compliance",
-            "custom policies"
+            "policy compliance"
           ]
         },
         {
-          "product": "Regula",
+          "product": "Azure Policy",
           "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 6.0,
+          "mention_rate": 0.5,
+          "avg_position": 3.33,
           "sentiment": {
             "positive": 2,
-            "neutral": 0,
+            "neutral": 1,
             "negative": 0
           },
           "attributes": [
-            "open-source",
-            "evaluate",
-            "security policies",
-            "security compliance",
-            "terraform code",
-            "predefined policies"
+            "native",
+            "manage policies",
+            "azure integration",
+            "native integration",
+            "broad coverage",
+            "cost-effective"
           ]
         }
       ],
@@ -478,9 +522,23 @@
           {
             "product": "Checkov",
             "routing_share": 0.0
+          }
+        ],
+        "gemini": [
+          {
+            "product": "Open Policy Agent",
+            "routing_share": 1.0
           },
           {
-            "product": "Regula",
+            "product": "Azure Policy",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Checkov",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Terraform Sentinel",
             "routing_share": 0.0
           }
         ]
@@ -509,7 +567,7 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.333
+            "routing_share": 0.667
           }
         ],
         "Terraform Sentinel": [
@@ -531,7 +589,7 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.333
+            "routing_share": 0.167
           }
         ],
         "Checkov": [
@@ -549,24 +607,6 @@
           },
           {
             "date": "2026-06-27",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-28",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-29",
-            "routing_share": 0.0
-          }
-        ],
-        "Regula": [
-          {
-            "date": "2026-06-24",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-26",
             "routing_share": 0.0
           },
           {
@@ -597,7 +637,13 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.333
+            "routing_share": 0.167
+          }
+        ],
+        "Azure Policy": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
           }
         ]
       }
@@ -613,15 +659,16 @@
           "mention_rate": 0.667,
           "avg_position": 1.0,
           "sentiment": {
-            "positive": 2,
+            "positive": 4,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
             "state locking",
+            "remote backend",
+            "de facto standard",
             "remote state",
             "concurrent access",
-            "remote backend",
             "popular options"
           ]
         },
@@ -629,14 +676,15 @@
           "product": "Amazon S3",
           "routing_share": 0.333,
           "mention_rate": 0.667,
-          "avg_position": 2.0,
+          "avg_position": 1.75,
           "sentiment": {
-            "positive": 2,
+            "positive": 4,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
             "state file",
+            "highly available",
             "locking",
             "storage backend",
             "remote backend",
@@ -644,31 +692,12 @@
           ]
         },
         {
-          "product": "Azure Blob Storage",
-          "routing_share": 0.0,
-          "mention_rate": 1.0,
-          "avg_position": 2.67,
-          "sentiment": {
-            "positive": 3,
-            "neutral": 0,
-            "negative": 0
-          },
-          "attributes": [
-            "state isolation",
-            "azure locks",
-            "storage backend",
-            "remote storage",
-            "iac state",
-            "popular options"
-          ]
-        },
-        {
           "product": "Google Cloud Storage",
           "routing_share": 0.0,
           "mention_rate": 1.0,
-          "avg_position": 2.33,
+          "avg_position": 3.33,
           "sentiment": {
-            "positive": 3,
+            "positive": 6,
             "neutral": 0,
             "negative": 0
           },
@@ -682,13 +711,32 @@
           ]
         },
         {
+          "product": "Azure Blob Storage",
+          "routing_share": 0.0,
+          "mention_rate": 0.833,
+          "avg_position": 2.8,
+          "sentiment": {
+            "positive": 5,
+            "neutral": 0,
+            "negative": 0
+          },
+          "attributes": [
+            "state isolation",
+            "azure locks",
+            "storage backend",
+            "remote storage",
+            "iac state",
+            "popular options"
+          ]
+        },
+        {
           "product": "Pulumi",
           "routing_share": 0.0,
           "mention_rate": 0.667,
-          "avg_position": 2.0,
+          "avg_position": 5.0,
           "sentiment": {
-            "positive": 2,
-            "neutral": 0,
+            "positive": 3,
+            "neutral": 1,
             "negative": 0
           },
           "attributes": [
@@ -704,56 +752,19 @@
           "product": "DynamoDB",
           "routing_share": 0.0,
           "mention_rate": 0.667,
-          "avg_position": 2.5,
+          "avg_position": 2.25,
           "sentiment": {
-            "positive": 2,
+            "positive": 4,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
+            "state locking",
             "locking mechanism",
             "dynamodb table",
             "state isolation",
-            "state locking",
             "aws",
             "managed service"
-          ]
-        },
-        {
-          "product": "Git",
-          "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 2.5,
-          "sentiment": {
-            "positive": 2,
-            "neutral": 0,
-            "negative": 0
-          },
-          "attributes": [
-            "version control",
-            "infrastructure code",
-            "collaboration",
-            "iac management",
-            "repository"
-          ]
-        },
-        {
-          "product": "GitHub Actions",
-          "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 3.0,
-          "sentiment": {
-            "positive": 2,
-            "neutral": 0,
-            "negative": 0
-          },
-          "attributes": [
-            "ci/cd",
-            "deployments",
-            "state management",
-            "ci/cd pipelines",
-            "automation",
-            "deployment"
           ]
         }
       ],
@@ -782,13 +793,31 @@
           {
             "product": "DynamoDB",
             "routing_share": 0.0
+          }
+        ],
+        "gemini": [
+          {
+            "product": "Terraform",
+            "routing_share": 0.667
           },
           {
-            "product": "Git",
+            "product": "Amazon S3",
+            "routing_share": 0.333
+          },
+          {
+            "product": "Google Cloud Storage",
             "routing_share": 0.0
           },
           {
-            "product": "GitHub Actions",
+            "product": "DynamoDB",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Azure Blob Storage",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Pulumi",
             "routing_share": 0.0
           }
         ]
@@ -908,54 +937,6 @@
             "routing_share": 0.0
           }
         ],
-        "Git": [
-          {
-            "date": "2026-06-24",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-25",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-26",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-28",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-29",
-            "routing_share": 0.0
-          }
-        ],
-        "GitHub Actions": [
-          {
-            "date": "2026-06-24",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-25",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-26",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-27",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-28",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-29",
-            "routing_share": 0.0
-          }
-        ],
         "Terraform": [
           {
             "date": "2026-06-29",
@@ -971,11 +952,11 @@
       "leaderboard": [
         {
           "product": "HashiCorp Vault",
-          "routing_share": 0.667,
+          "routing_share": 0.833,
           "mention_rate": 1.0,
-          "avg_position": 1.33,
+          "avg_position": 1.17,
           "sentiment": {
-            "positive": 3,
+            "positive": 6,
             "neutral": 0,
             "negative": 0
           },
@@ -990,19 +971,19 @@
         },
         {
           "product": "AWS Secrets Manager",
-          "routing_share": 0.333,
+          "routing_share": 0.167,
           "mention_rate": 1.0,
-          "avg_position": 1.67,
+          "avg_position": 1.83,
           "sentiment": {
-            "positive": 2,
+            "positive": 5,
             "neutral": 1,
             "negative": 0
           },
           "attributes": [
+            "managed service",
             "credential management",
             "rotation",
             "integration with rds",
-            "managed service",
             "easy rotation",
             "aws integration"
           ]
@@ -1010,39 +991,39 @@
         {
           "product": "CyberArk",
           "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 3.5,
+          "mention_rate": 0.833,
+          "avg_position": 4.0,
           "sentiment": {
-            "positive": 1,
+            "positive": 4,
             "neutral": 1,
             "negative": 0
           },
           "attributes": [
+            "enterprise-grade",
+            "credential rotation",
             "open-source",
             "automates secrets management",
             "dynamic credential generation",
-            "managing credentials",
-            "credential rotation",
-            "fixed schedule"
+            "managing credentials"
           ]
         },
         {
-          "product": "Kubernetes Secrets",
+          "product": "Azure Key Vault",
           "routing_share": 0.0,
           "mention_rate": 0.667,
-          "avg_position": 4.5,
+          "avg_position": 2.75,
           "sentiment": {
-            "positive": 1,
+            "positive": 3,
             "neutral": 1,
             "negative": 0
           },
           "attributes": [
-            "manages sensitive information",
-            "kubernetes",
-            "rotation logic",
-            "external secret management",
-            "integration",
-            "automated updates"
+            "secrets management",
+            "secure storage",
+            "microsoft azure",
+            "managed service",
+            "cloud-native",
+            "cost-effective"
           ]
         }
       ],
@@ -1061,7 +1042,25 @@
             "routing_share": 0.0
           },
           {
-            "product": "Kubernetes Secrets",
+            "product": "Azure Key Vault",
+            "routing_share": 0.0
+          }
+        ],
+        "gemini": [
+          {
+            "product": "HashiCorp Vault",
+            "routing_share": 1.0
+          },
+          {
+            "product": "AWS Secrets Manager",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Azure Key Vault",
+            "routing_share": 0.0
+          },
+          {
+            "product": "CyberArk",
             "routing_share": 0.0
           }
         ]
@@ -1090,7 +1089,7 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.667
+            "routing_share": 0.833
           }
         ],
         "AWS Secrets Manager": [
@@ -1116,7 +1115,7 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.333
+            "routing_share": 0.167
           }
         ],
         "CyberArk": [
@@ -1145,9 +1144,13 @@
             "routing_share": 0.0
           }
         ],
-        "Kubernetes Secrets": [
+        "Azure Key Vault": [
           {
             "date": "2026-06-24",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-25",
             "routing_share": 0.0
           },
           {
@@ -1156,6 +1159,10 @@
           },
           {
             "date": "2026-06-27",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-28",
             "routing_share": 0.0
           },
           {
@@ -1173,29 +1180,29 @@
         {
           "product": "HashiCorp Vault",
           "routing_share": 0.333,
-          "mention_rate": 1.0,
-          "avg_position": 1.33,
+          "mention_rate": 0.833,
+          "avg_position": 1.6,
           "sentiment": {
-            "positive": 3,
+            "positive": 5,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
             "dynamically generate",
+            "dynamic secrets",
+            "open-source",
             "one-time-use",
             "automatically revoke",
-            "short ttl",
-            "revoked after use",
-            "powerful"
+            "short ttl"
           ]
         },
         {
           "product": "AWS Secrets Manager",
-          "routing_share": 0.333,
-          "mention_rate": 0.667,
-          "avg_position": 1.5,
+          "routing_share": 0.167,
+          "mention_rate": 0.833,
+          "avg_position": 3.6,
           "sentiment": {
-            "positive": 2,
+            "positive": 5,
             "neutral": 0,
             "negative": 0
           },
@@ -1210,8 +1217,27 @@
         },
         {
           "product": "Amazon RDS IAM Authentication",
-          "routing_share": 0.333,
+          "routing_share": 0.167,
           "mention_rate": 0.333,
+          "avg_position": 1.5,
+          "sentiment": {
+            "positive": 2,
+            "neutral": 0,
+            "negative": 0
+          },
+          "attributes": [
+            "iam integration",
+            "temporary credentials",
+            "short-lived",
+            "temporary access",
+            "aws credentials",
+            "postgresql"
+          ]
+        },
+        {
+          "product": "AWS IAM roles for EC2 instances",
+          "routing_share": 0.167,
+          "mention_rate": 0.167,
           "avg_position": 1.0,
           "sentiment": {
             "positive": 1,
@@ -1219,28 +1245,44 @@
             "negative": 0
           },
           "attributes": [
-            "iam integration",
+            "cloud-native",
             "temporary credentials",
-            "short-lived"
+            "secure"
           ]
         },
         {
-          "product": "AWS RDS",
-          "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 2.0,
+          "product": "AWS IAM",
+          "routing_share": 0.167,
+          "mention_rate": 0.167,
+          "avg_position": 1.0,
           "sentiment": {
-            "positive": 2,
+            "positive": 1,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
-            "automatic creation",
-            "short-lived credentials",
-            "database access",
-            "iam database authentication",
-            "temporary token",
-            "credentials management"
+            "temporary credentials",
+            "cloud-native",
+            "aws integration"
+          ]
+        },
+        {
+          "product": "Azure Key Vault",
+          "routing_share": 0.0,
+          "mention_rate": 0.667,
+          "avg_position": 5.0,
+          "sentiment": {
+            "positive": 3,
+            "neutral": 1,
+            "negative": 0
+          },
+          "attributes": [
+            "storing",
+            "secrets management",
+            "managing access",
+            "on-demand credentials",
+            "managed service",
+            "azure environments"
           ]
         }
       ],
@@ -1259,7 +1301,33 @@
             "routing_share": 0.333
           },
           {
-            "product": "AWS RDS",
+            "product": "Azure Key Vault",
+            "routing_share": 0.0
+          }
+        ],
+        "gemini": [
+          {
+            "product": "HashiCorp Vault",
+            "routing_share": 0.333
+          },
+          {
+            "product": "AWS IAM roles for EC2 instances",
+            "routing_share": 0.333
+          },
+          {
+            "product": "AWS IAM",
+            "routing_share": 0.333
+          },
+          {
+            "product": "AWS Secrets Manager",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Azure Key Vault",
+            "routing_share": 0.0
+          },
+          {
+            "product": "Amazon RDS IAM Authentication",
             "routing_share": 0.0
           }
         ]
@@ -1288,7 +1356,17 @@
           },
           {
             "date": "2026-06-29",
+            "routing_share": 0.167
+          }
+        ],
+        "AWS IAM": [
+          {
+            "date": "2026-06-24",
             "routing_share": 0.333
+          },
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.167
           }
         ],
         "HashiCorp Vault": [
@@ -1317,7 +1395,7 @@
             "routing_share": 0.333
           }
         ],
-        "AWS RDS": [
+        "Azure Key Vault": [
           {
             "date": "2026-06-24",
             "routing_share": 0.0
@@ -1346,7 +1424,13 @@
         "Amazon RDS IAM Authentication": [
           {
             "date": "2026-06-29",
-            "routing_share": 0.333
+            "routing_share": 0.167
+          }
+        ],
+        "AWS IAM roles for EC2 instances": [
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.167
           }
         ]
       }
@@ -1354,15 +1438,34 @@
     {
       "category": "secrets-management",
       "feature": "secret scanning",
-      "leader": "git-secrets",
+      "leader": "Gitleaks",
       "leaderboard": [
         {
-          "product": "git-secrets",
-          "routing_share": 0.667,
+          "product": "Gitleaks",
+          "routing_share": 0.333,
           "mention_rate": 1.0,
-          "avg_position": 2.67,
+          "avg_position": 2.17,
           "sentiment": {
-            "positive": 3,
+            "positive": 6,
+            "neutral": 0,
+            "negative": 0
+          },
+          "attributes": [
+            "fast",
+            "git history scanning",
+            "sast tool",
+            "configurable",
+            "detects secrets",
+            "command-line"
+          ]
+        },
+        {
+          "product": "git-secrets",
+          "routing_share": 0.333,
+          "mention_rate": 0.667,
+          "avg_position": 3.0,
+          "sentiment": {
+            "positive": 4,
             "neutral": 0,
             "negative": 0
           },
@@ -1376,66 +1479,50 @@
           ]
         },
         {
-          "product": "GitGuardian",
-          "routing_share": 0.333,
-          "mention_rate": 0.333,
-          "avg_position": 1.0,
-          "sentiment": {
-            "positive": 1,
-            "neutral": 0,
-            "negative": 0
-          },
-          "attributes": [
-            "real-time monitoring",
-            "alerts",
-            "well-known"
-          ]
-        },
-        {
           "product": "TruffleHog",
-          "routing_share": 0.0,
+          "routing_share": 0.167,
           "mention_rate": 1.0,
-          "avg_position": 2.0,
+          "avg_position": 1.83,
           "sentiment": {
-            "positive": 3,
+            "positive": 6,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
+            "open-source",
             "high-entropy strings",
             "git repositories",
-            "open-source",
             "customizable",
             "high-entropy",
             "scan history"
           ]
         },
         {
-          "product": "Gitleaks",
-          "routing_share": 0.0,
-          "mention_rate": 1.0,
-          "avg_position": 3.0,
+          "product": "GitGuardian",
+          "routing_share": 0.167,
+          "mention_rate": 0.667,
+          "avg_position": 3.75,
           "sentiment": {
-            "positive": 3,
+            "positive": 4,
             "neutral": 0,
             "negative": 0
           },
           "attributes": [
-            "sast tool",
-            "configurable",
-            "detects secrets",
-            "command-line",
-            "scan repositories",
-            "ci/cd integration"
+            "real-time monitoring",
+            "alerts",
+            "well-known",
+            "real-time scanning",
+            "comprehensive",
+            "proactive alerts"
           ]
         },
         {
           "product": "detect-secrets",
           "routing_share": 0.0,
-          "mention_rate": 1.0,
-          "avg_position": 4.67,
+          "mention_rate": 0.667,
+          "avg_position": 4.25,
           "sentiment": {
-            "positive": 3,
+            "positive": 4,
             "neutral": 0,
             "negative": 0
           },
@@ -1449,21 +1536,22 @@
           ]
         },
         {
-          "product": "Talisman",
+          "product": "AWS Secrets Manager",
           "routing_share": 0.0,
-          "mention_rate": 0.667,
-          "avg_position": 4.5,
+          "mention_rate": 0.5,
+          "avg_position": 7.33,
           "sentiment": {
-            "positive": 2,
-            "neutral": 0,
+            "positive": 1,
+            "neutral": 2,
             "negative": 0
           },
           "attributes": [
-            "pre-commit hook",
-            "prevents commits",
-            "scans files",
-            "enforce policies",
-            "sensitive data"
+            "secret management",
+            "avoid storing",
+            "in codebase",
+            "manage secrets",
+            "securely",
+            "best practice"
           ]
         }
       ],
@@ -1490,7 +1578,33 @@
             "routing_share": 0.0
           },
           {
-            "product": "Talisman",
+            "product": "AWS Secrets Manager",
+            "routing_share": 0.0
+          }
+        ],
+        "gemini": [
+          {
+            "product": "Gitleaks",
+            "routing_share": 0.667
+          },
+          {
+            "product": "TruffleHog",
+            "routing_share": 0.333
+          },
+          {
+            "product": "GitGuardian",
+            "routing_share": 0.0
+          },
+          {
+            "product": "AWS Secrets Manager",
+            "routing_share": 0.0
+          },
+          {
+            "product": "detect-secrets",
+            "routing_share": 0.0
+          },
+          {
+            "product": "git-secrets",
             "routing_share": 0.0
           }
         ]
@@ -1519,7 +1633,7 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.0
+            "routing_share": 0.333
           }
         ],
         "TruffleHog": [
@@ -1545,36 +1659,10 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.0
+            "routing_share": 0.167
           }
         ],
         "detect-secrets": [
-          {
-            "date": "2026-06-24",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-25",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-26",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-27",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-28",
-            "routing_share": 0.0
-          },
-          {
-            "date": "2026-06-29",
-            "routing_share": 0.0
-          }
-        ],
-        "Talisman": [
           {
             "date": "2026-06-24",
             "routing_share": 0.0
@@ -1619,7 +1707,7 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.333
+            "routing_share": 0.167
           }
         ],
         "git-secrets": [
@@ -1637,7 +1725,21 @@
           },
           {
             "date": "2026-06-29",
-            "routing_share": 0.667
+            "routing_share": 0.333
+          }
+        ],
+        "AWS Secrets Manager": [
+          {
+            "date": "2026-06-25",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-26",
+            "routing_share": 0.0
+          },
+          {
+            "date": "2026-06-29",
+            "routing_share": 0.0
           }
         ]
       }

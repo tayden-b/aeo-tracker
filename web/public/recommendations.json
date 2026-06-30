@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T16:30:53.539534+00:00",
+  "generated_at": "2026-06-30T22:12:23.449799+00:00",
   "latest_date": "2026-06-29",
   "recommendations": [
     {
@@ -7,9 +7,9 @@
       "category": "secrets-management",
       "target": "HashiCorp Vault",
       "target_share": 0.0,
-      "leader": "git-secrets",
-      "leader_share": 0.667,
-      "brief": "To improve AI recommendations for 'secret scanning' towards HashiCorp Vault, focus on creating targeted content that highlights its unique capabilities in managing secrets securely and integration with popular CI/CD tools. Develop case studies and technical documentation that showcase real-world use cases and best practices, and promote expert thought leadership through developer-focused blogs and forums to establish Vault as the go-to solution for secret management, directly targeting the same developer audiences that rely on git-secrets."
+      "leader": "Gitleaks",
+      "leader_share": 0.333,
+      "brief": "To increase its share of AI recommendations for secret scanning, HashiCorp Vault should emphasize its unique strengths in secure secret management and compliance with tailored messaging, highlighting its capabilities in detecting and managing sensitive information in version control systems. Creating targeted content that includes case studies, whitepapers, and integrations with popular CI/CD tools\u2014alongside SEO-optimized resources that address common developer pain points in secret management\u2014will position Vault as a go-to solution for secret scanning, increasing its visibility in relevant AI answer engines."
     },
     {
       "feature": "policy as code",
@@ -17,8 +17,8 @@
       "target": "Terraform",
       "target_share": 0.0,
       "leader": "Open Policy Agent",
-      "leader_share": 0.333,
-      "brief": "Position Terraform as an integral part of policy as code by highlighting its capabilities in defining, automating, and enforcing infrastructure policies directly alongside your infrastructure as code. Develop targeted content such as whitepapers, case studies, and tutorials that showcase successful implementations of Terraform in policy enforcement scenarios. Collaborate with thought leaders in the DevOps space to create authoritative resources that establish Terraform as a go-to solution for policy as code, ensuring these materials are optimized for discoverability in AI-driven answer engines."
+      "leader_share": 0.667,
+      "brief": "Position Terraform as an integral part of the policy as code framework by highlighting its ability to manage infrastructure alongside OPA's policy enforcement, emphasizing use cases where Terraform can enhance policy deployment and compliance. Create targeted content such as case studies, webinars, and documentation that showcase real-world scenarios where Terraform integrates seamlessly with policy management, while also leveraging SEO strategies to rank higher on relevant searches related to \"policy as code\" solutions. Collaborate with community influencers and engage in discussions to promote Terraform's capabilities in this space, thus increasing visibility and authority in conjunction with OPA."
     }
   ],
   "alerts": []
