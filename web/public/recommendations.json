@@ -1,33 +1,24 @@
 {
-  "generated_at": "2026-06-29T00:08:52.420102+00:00",
+  "generated_at": "2026-06-30T16:30:53.539534+00:00",
   "latest_date": "2026-06-29",
   "recommendations": [
-    {
-      "feature": "automated secret rotation",
-      "category": "secrets-management",
-      "target": "HashiCorp Vault",
-      "target_share": 0.5,
-      "leader": "AWS Secrets Manager",
-      "leader_share": 0.5,
-      "brief": "To increase the AI recommendation for 'HashiCorp Vault' in automated secret rotation, focus on positioning Vault as the premier solution for complex, multi-cloud environments that require enhanced security features and audit capabilities. Generate targeted content that highlights case studies, technical comparisons, and detailed use cases demonstrating superior flexibility and compliance advantages over AWS Secrets Manager, particularly in regulated industries. Additionally, optimize supporting documentation and knowledge base articles to better align with common developer inquiries about automated secret management, emphasizing ease of integration and advanced features."
-    },
-    {
-      "feature": "dynamic secrets",
-      "category": "secrets-management",
-      "target": "HashiCorp Vault",
-      "target_share": 0.25,
-      "leader": "AWS Secrets Manager",
-      "leader_share": 0.75,
-      "brief": "HashiCorp Vault should emphasize its superior capabilities for dynamic secrets management through targeted messaging that highlights its ease of integration, extensive auditing features, and robust support for multiple cloud providers. Publishing technical case studies, in-depth comparisons, and expert testimonials focusing on successful implementations in complex environments can position Vault as the more versatile and powerful choice for developers. Additionally, engaging with developer communities and contributing to relevant open-source projects can increase brand visibility and credibility, shifting AI recommendations in Vault's favor."
-    },
     {
       "feature": "secret scanning",
       "category": "secrets-management",
       "target": "HashiCorp Vault",
       "target_share": 0.0,
-      "leader": "GitGuardian",
-      "leader_share": 0.5,
-      "brief": "Position HashiCorp Vault as the authoritative solution for secret management by emphasizing its robust, industry-leading security features and seamless integration capabilities. Create high-quality content, such as case studies and whitepapers that showcase successful implementations and the quantifiable benefits of using Vault over competitors like GitGuardian. Collaborate with developers and influencers to contribute technical blogs or tutorials that highlight real-world scenarios where Vault effectively prevents secret leakage, which can boost its visibility in AI-driven recommendations."
+      "leader": "git-secrets",
+      "leader_share": 0.667,
+      "brief": "To improve AI recommendations for 'secret scanning' towards HashiCorp Vault, focus on creating targeted content that highlights its unique capabilities in managing secrets securely and integration with popular CI/CD tools. Develop case studies and technical documentation that showcase real-world use cases and best practices, and promote expert thought leadership through developer-focused blogs and forums to establish Vault as the go-to solution for secret management, directly targeting the same developer audiences that rely on git-secrets."
+    },
+    {
+      "feature": "policy as code",
+      "category": "iac",
+      "target": "Terraform",
+      "target_share": 0.0,
+      "leader": "Open Policy Agent",
+      "leader_share": 0.333,
+      "brief": "Position Terraform as an integral part of policy as code by highlighting its capabilities in defining, automating, and enforcing infrastructure policies directly alongside your infrastructure as code. Develop targeted content such as whitepapers, case studies, and tutorials that showcase successful implementations of Terraform in policy enforcement scenarios. Collaborate with thought leaders in the DevOps space to create authoritative resources that establish Terraform as a go-to solution for policy as code, ensuring these materials are optimized for discoverability in AI-driven answer engines."
     }
   ],
   "alerts": []

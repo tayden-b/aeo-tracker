@@ -15,6 +15,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 from datetime import datetime, timezone
 
 import db
@@ -29,9 +30,18 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--n", type=int, default=5)
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--date", type=str, default=None,
+                        help="stamp this run_date (YYYY-MM-DD); default = today. "
+                             "Used to backfill real data across dates for trends.")
+    parser.add_argument("--providers", type=str, default=None,
+                        help="comma-separated subset of engines, e.g. 'openai' or "
+                             "'openai,gemini'. Default = all engines with keys.")
     args = parser.parse_args()
 
     providers = available_providers()
+    if args.providers:
+        wanted = {p.strip() for p in args.providers.split(",")}
+        providers = [p for p in providers if p in wanted]
     if not providers:
         raise SystemExit("No provider API keys found. Set OPENAI_API_KEY in .env")
 
@@ -39,7 +49,8 @@ def main() -> None:
     db.init_db(conn)
 
     now = datetime.now(timezone.utc)
-    ts, run_date = now.isoformat(), now.date().isoformat()
+    ts = now.isoformat()
+    run_date = args.date or now.date().isoformat()
     features = FEATURES[: args.limit] if args.limit else FEATURES
 
     print(f"Collection run {run_date} | providers: {', '.join(providers)} | N={args.n}")
@@ -48,21 +59,31 @@ def main() -> None:
         print(f"  [{feat['category']}] {feat['feature']}")
         for provider in providers:
             model = PROVIDERS[provider]["model"]
+            stored = 0
             for i in range(args.n):
-                answer = get_answer(provider, feat["prompt"])
-                ex = extract(answer)
-                run_id = db.insert_run(
-                    conn, ts=ts, run_date=run_date, provider=provider, model=model,
-                    category=feat["category"], feature=feat["feature"],
-                    prompt=feat["prompt"], raw_answer=answer,
-                )
-                for p in ex.products:
-                    db.insert_routing(conn, run_id, p.name, p.role, p.position, p.sentiment)
-                for url in ex.citations:
-                    db.insert_citation(conn, run_id, url)
-                total += 1
+                # resilient: a failed sample (rate limit / 503) is skipped, not fatal,
+                # so one flaky engine never kills the whole run.
+                try:
+                    answer = get_answer(provider, feat["prompt"])
+                    ex = extract(answer)
+                    run_id = db.insert_run(
+                        conn, ts=ts, run_date=run_date, provider=provider, model=model,
+                        category=feat["category"], feature=feat["feature"],
+                        prompt=feat["prompt"], raw_answer=answer,
+                    )
+                    for p in ex.products:
+                        db.insert_routing(
+                            conn, run_id, p.name, p.role, p.position, p.sentiment,
+                            json.dumps(p.attributes),
+                        )
+                    for url in ex.citations:
+                        db.insert_citation(conn, run_id, url)
+                    stored += 1
+                    total += 1
+                except Exception as e:  # noqa: BLE001
+                    print(f"      ! {provider} sample {i + 1} skipped: {str(e)[:90]}")
             conn.commit()
-            print(f"    · {provider}: {args.n} samples stored")
+            print(f"    · {provider}: {stored}/{args.n} samples stored")
 
     print(f"\nStored {total} runs for {run_date}. Building rollups...")
     n_roll = build_rollups(conn, run_date)

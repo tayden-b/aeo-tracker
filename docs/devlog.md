@@ -49,5 +49,15 @@ Running log of decisions and traps — what I chose, what broke, what I'd still 
 - **Result:** generated real briefs for Vault on rotation/dynamic-secrets/scanning; 0 alerts (single run date so far).
 - **Trap noted:** target↔category relevance is coarse (Vault gets recommended for "secret scanning," which isn't really its job). Fine as an "absent from this feature" signal; would refine with a per-target feature allowlist.
 
+## Dashboard v2 — detailed + modern (multi-engine, trends, attributes)
+- **Added Gemini** as a second answer engine (`providers.py`, key-gated). Models: `gemini-2.5-flash-lite` (2.0-flash retired).
+- **Extraction backend:** tried Gemini free tier for extraction to save OpenAI $ — but its free tier rate-limits/503s too hard for bulk volume (a 4-call test took 64s). Reverted extraction to OpenAI `gpt-4o-mini` (fast, reliable, ~$0.05 for a full backfill). Gemini kept as an answer engine only.
+- **Persisted attributes** (`routings.attributes` JSON) so the dashboard can show positioning words.
+- **Backfilled 6 dates** (Jun 24–29) of real data for trend lines — historical dates on OpenAI (fast), latest date attempted with both engines. `run.py --date` + `--providers` flags added.
+- **Resilience:** `run.py` now skips a failed sample (rate limit / 503) instead of crashing the whole run; `llm_util` backs off on 429/503/overload.
+- **Gemini cross-engine: still pending** — Gemini hit repeated 503 "high demand" during the backfill, so the current dataset is OpenAI-only (engines=1, so the cross-engine matrix hides). Re-attempt when Gemini is less loaded; the dashboard lights up the matrix automatically when a 2nd engine appears.
+- **Export v2** (`export.py`): overview KPIs (features/engines/samples/dates, tracked leads), per-feature leaderboard + sentiment + avg position + top attributes + per-engine breakdown + routing-share trend across dates.
+- **Dashboard v2** (`web/`, Recharts): KPI header, rich per-feature cards (routing bar chart, per-engine chips, sentiment bar, attribute chips, trend line), cross-engine matrix (when >1 engine), recommendations. `next build` passes static.
+
 ## Status
-M0–M4 complete: full pipeline runs end-to-end (prompt → multi-provider sampling → extraction → SQLite → rollups → export → dashboard + recommendations). Public repo live. Remaining for a polished public launch: more run dates for real trends, add the other provider keys (esp. Perplexity for citations), deploy `web/` to Vercel, and a POV writeup.
+M0–M4 complete + dashboard v2 (detailed, 6 dates of trend data). Public repo live, deploys to Vercel. Remaining: land Gemini (cross-engine) when its API is less loaded; Perplexity for citations; a POV writeup.

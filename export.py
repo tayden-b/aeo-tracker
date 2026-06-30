@@ -1,9 +1,10 @@
 """
 Export rollups → a JSON snapshot the dashboard reads.
 
-This is the clean seam between the Python backend and the frontend: the backend
-owns data, the dashboard just renders this file. (Static-friendly: the Next.js
-app can read it at build time and deploy to Vercel with no live DB.)
+The clean seam between the Python backend (owns data) and the frontend (renders
+this file). Produces: an overview KPI block, and per-feature leaderboards with
+routing share, mention rate, avg position, sentiment, top positioning attributes,
+per-engine breakdown, and a routing-share trend across dates.
 
     python export.py   ->   web/public/data.json
 """
@@ -11,13 +12,35 @@ app can read it at build time and deploy to Vercel with no live DB.)
 from __future__ import annotations
 
 import json
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 import db
+from metrics import normalize
 
 OUT = Path(__file__).parent / "web" / "public" / "data.json"
+
+
+def _attributes_for_latest(conn, latest: str) -> dict[tuple, list[str]]:
+    """(feature, normalized product) -> top descriptive attributes on the latest date."""
+    rows = conn.execute(
+        "SELECT r.feature AS feature, rt.product AS product, rt.attributes AS attrs "
+        "FROM routings rt JOIN runs r ON rt.run_id = r.id WHERE r.run_date = ?",
+        (latest,),
+    ).fetchall()
+    counts: dict[tuple, Counter] = defaultdict(Counter)
+    for row in rows:
+        prod = normalize(row["product"])
+        try:
+            attrs = json.loads(row["attrs"] or "[]")
+        except (json.JSONDecodeError, TypeError):
+            attrs = []
+        for a in attrs:
+            a = (a or "").strip().lower()
+            if a:
+                counts[(row["feature"], prod)][a] += 1
+    return {k: [a for a, _ in c.most_common(6)] for k, c in counts.items()}
 
 
 def export() -> Path:
@@ -26,19 +49,18 @@ def export() -> Path:
     dates = db.distinct_run_dates(conn)
     latest = dates[-1] if dates else None
     rollups = [dict(r) for r in db.fetch_rollups(conn)]
+    total_runs = conn.execute("SELECT COUNT(*) AS n FROM runs").fetchone()["n"]
+    attrs_map = _attributes_for_latest(conn, latest) if latest else {}
 
-    # group rollups by feature
     feats: dict[tuple, dict] = {}
     for r in rollups:
         key = (r["category"], r["feature"])
-        feats.setdefault(key, {"category": r["category"], "feature": r["feature"],
-                               "rows": []})
-        feats[key]["rows"].append(r)
+        feats.setdefault(key, {"rows": []})["rows"].append(r)
 
     features = []
     for (category, feature), data in sorted(feats.items()):
         rows = data["rows"]
-        # blended + latest date = the headline leaderboard
+
         blended_latest = [
             {
                 "product": r["product"],
@@ -50,19 +72,19 @@ def export() -> Path:
                     "neutral": r["sentiment_neutral"],
                     "negative": r["sentiment_negative"],
                 },
+                "attributes": attrs_map.get((feature, r["product"]), []),
             }
             for r in rows
             if r["provider"] == "blended" and r["run_date"] == latest
         ]
         blended_latest.sort(key=lambda p: (p["routing_share"], p["mention_rate"]), reverse=True)
-        # keep only meaningful products (drop one-off extraction noise), cap to top 8
         leaderboard = [
             p for p in blended_latest
             if p["routing_share"] > 0 or p["mention_rate"] >= 0.5
         ][:8]
         shown = {p["product"] for p in leaderboard}
 
-        # per-provider leaderboards (latest date), limited to shown products
+        # per-engine routing (latest), limited to shown products
         by_provider: dict[str, list] = defaultdict(list)
         for r in rows:
             if r["provider"] != "blended" and r["run_date"] == latest and r["product"] in shown:
@@ -72,7 +94,7 @@ def export() -> Path:
         for p in by_provider.values():
             p.sort(key=lambda x: x["routing_share"], reverse=True)
 
-        # routing-share trend over dates (blended), per shown product
+        # routing-share trend across dates (blended), per shown product
         trend: dict[str, list] = defaultdict(list)
         for r in rows:
             if r["provider"] == "blended" and r["product"] in shown:
@@ -85,16 +107,31 @@ def export() -> Path:
         features.append({
             "category": category,
             "feature": feature,
+            "leader": leaderboard[0]["product"] if leaderboard else None,
             "leaderboard": leaderboard,
             "by_provider": dict(by_provider),
             "trend": dict(trend),
         })
 
+    providers = sorted({r["provider"] for r in rollups if r["provider"] != "blended"})
+
+    # overview: how many features each tracked product leads
+    tracked = {"HashiCorp Vault", "Terraform"}
+    leads = Counter(f["leader"] for f in features if f["leader"] in tracked)
+
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "latest_date": latest,
         "dates": dates,
-        "providers": sorted({r["provider"] for r in rollups if r["provider"] != "blended"}),
+        "providers": providers,
+        "overview": {
+            "features": len(features),
+            "engines": len(providers),
+            "engine_names": providers,
+            "samples": total_runs,
+            "dates": len(dates),
+            "tracked_leads": dict(leads),
+        },
         "features": features,
     }
 
@@ -104,5 +141,4 @@ def export() -> Path:
 
 
 if __name__ == "__main__":
-    path = export()
-    print(f"Wrote {path}")
+    print(f"Wrote {export()}")

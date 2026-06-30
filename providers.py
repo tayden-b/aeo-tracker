@@ -15,6 +15,8 @@ import os
 
 from dotenv import load_dotenv
 
+from llm_util import call_with_retries
+
 load_dotenv()
 
 # name -> which env var holds its key, and the default model to use
@@ -22,7 +24,7 @@ PROVIDERS: dict[str, dict[str, str]] = {
     "openai": {"env": "OPENAI_API_KEY", "model": "gpt-4o-mini"},
     "anthropic": {"env": "ANTHROPIC_API_KEY", "model": "claude-haiku-4-5-20251001"},
     "perplexity": {"env": "PERPLEXITY_API_KEY", "model": "sonar"},
-    "gemini": {"env": "GEMINI_API_KEY", "model": "gemini-2.0-flash"},
+    "gemini": {"env": "GEMINI_API_KEY", "model": "gemini-2.5-flash-lite"},
 }
 
 
@@ -46,27 +48,29 @@ def get_answer(provider: str, prompt: str) -> str:
 
         base_url = "https://api.perplexity.ai" if provider == "perplexity" else None
         client = OpenAI(api_key=key, base_url=base_url)
-        resp = client.chat.completions.create(
+        resp = call_with_retries(lambda: client.chat.completions.create(
             model=model, messages=[{"role": "user", "content": prompt}]
-        )
+        ))
         return resp.choices[0].message.content
 
     if provider == "anthropic":
         from anthropic import Anthropic
 
         client = Anthropic(api_key=key)
-        resp = client.messages.create(
+        resp = call_with_retries(lambda: client.messages.create(
             model=model,
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
-        )
+        ))
         return resp.content[0].text
 
     if provider == "gemini":
         from google import genai
 
         client = genai.Client(api_key=key)
-        resp = client.models.generate_content(model=model, contents=prompt)
+        resp = call_with_retries(
+            lambda: client.models.generate_content(model=model, contents=prompt)
+        )
         return resp.text
 
     raise ValueError(f"Unknown provider: {provider}")

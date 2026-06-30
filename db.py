@@ -32,12 +32,13 @@ CREATE TABLE IF NOT EXISTS runs (
     raw_answer TEXT
 );
 CREATE TABLE IF NOT EXISTS routings (
-    id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    run_id    INTEGER NOT NULL REFERENCES runs(id),
-    product   TEXT NOT NULL,
-    role      TEXT,
-    position  INTEGER,
-    sentiment TEXT
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_id     INTEGER NOT NULL REFERENCES runs(id),
+    product    TEXT NOT NULL,
+    role       TEXT,
+    position   INTEGER,
+    sentiment  TEXT,
+    attributes TEXT  -- JSON array of descriptive words/phrases
 );
 CREATE TABLE IF NOT EXISTS citations (
     id     INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -84,10 +85,11 @@ def insert_run(conn, *, ts, run_date, provider, model, category, feature, prompt
     return cur.lastrowid
 
 
-def insert_routing(conn, run_id, product, role, position, sentiment) -> None:
+def insert_routing(conn, run_id, product, role, position, sentiment, attributes="[]") -> None:
     conn.execute(
-        "INSERT INTO routings (run_id, product, role, position, sentiment) VALUES (?,?,?,?,?)",
-        (run_id, product, role, position, sentiment),
+        "INSERT INTO routings (run_id, product, role, position, sentiment, attributes)"
+        " VALUES (?,?,?,?,?,?)",
+        (run_id, product, role, position, sentiment, attributes),
     )
 
 
