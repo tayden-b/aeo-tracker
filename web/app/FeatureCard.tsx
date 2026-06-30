@@ -110,7 +110,7 @@ export function FeatureCard({ feature }: { feature: Feature }) {
             labelFormatter={() => ""}
             contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid #e2e8f0" }}
           />
-          <Bar dataKey="value" radius={[0, 4, 4, 0]} label={{ position: "right", formatter: (v) => `${v ?? ""}%`, fontSize: 11, fill: "#64748b" }}>
+          <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false} label={{ position: "right", formatter: (v) => `${v ?? ""}%`, fontSize: 11, fill: "#64748b" }}>
             {barData.map((d) => (
               <Cell key={d.name} fill={barColor(d.name, d.isLeader)} />
             ))}
@@ -182,6 +182,7 @@ export function FeatureCard({ feature }: { feature: Feature }) {
                   strokeWidth={2}
                   dot={false}
                   connectNulls
+                  isAnimationActive={false}
                 />
               ))}
             </LineChart>
