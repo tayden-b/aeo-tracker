@@ -11,7 +11,6 @@ the feature, and how much it varies run-to-run. That observation becomes the
 spec for the extraction step next.
 """
 
-import os
 from dotenv import load_dotenv
 from openai import OpenAI
 

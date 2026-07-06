@@ -18,7 +18,7 @@ from collections import defaultdict
 from types import SimpleNamespace
 
 import db
-from metrics import normalize, routing_share
+from metrics import routing_share
 
 
 def _extractions_from_runs(conn, runs) -> list:
