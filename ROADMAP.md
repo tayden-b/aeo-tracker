@@ -14,9 +14,6 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Next up
 
-- [ ] CI: GitHub Actions workflow that lints (ruff) and runs a smoke test on
-      push. Nothing fancy — just prove the pipeline imports and the metrics
-      math runs on fixture data without hitting any provider.
 - [ ] Unit tests for the aggregation logic in `metrics.py` and `rollup.py`
       (routing share math, high-water counting) using canned extraction JSON.
       This is the code that must be right for the numbers to mean anything.
@@ -45,4 +42,6 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Done
 
-Nothing yet — file added 2026-07-02.
+- [x] CI: GitHub Actions workflow that lints (ruff) and runs a smoke test on
+      push, proving the pipeline imports and the metrics math runs on fixture
+      data without hitting any provider. (2026-07-06)
