@@ -14,9 +14,6 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Next up
 
-- [ ] Unit tests for the aggregation logic in `metrics.py` and `rollup.py`
-      (routing share math, high-water counting) using canned extraction JSON.
-      This is the code that must be right for the numbers to mean anything.
 - [ ] Scheduled collection: a GitHub Actions cron job that runs `run.py`
       daily with a small `--n`, commits the updated `web/public/data.json`
       snapshot back to the repo. This is what makes trends accumulate.
@@ -42,6 +39,11 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Done
 
+- [x] Unit tests for the aggregation logic in `metrics.py` and `rollup.py`.
+      `tests/test_rollup.py` drives `build_rollups` against an in-memory SQLite
+      DB (per-provider vs blended grouping, idempotent rebuild, sentiment
+      tally); `tests/test_metrics.py` pins the primary-tag-beats-position and
+      empty-sample edge cases. No provider is called. (2026-07-09)
 - [x] CI: GitHub Actions workflow that lints (ruff) and runs a smoke test on
       push, proving the pipeline imports and the metrics math runs on fixture
       data without hitting any provider. (2026-07-06)
