@@ -14,9 +14,6 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Next up
 
-- [ ] Scheduled collection: a GitHub Actions cron job that runs `run.py`
-      daily with a small `--n`, commits the updated `web/public/data.json`
-      snapshot back to the repo. This is what makes trends accumulate.
 - [ ] Trend view in the dashboard: routing share per feature over time
       (line chart), not just the latest snapshot.
 - [ ] Deploy the dashboard to Vercel reading the committed snapshot; put the
@@ -39,6 +36,14 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Done
 
+- [x] Scheduled collection: `.github/workflows/collect.yml` runs `run.py --n 3`
+      (and `recommend.py`) on a daily 09:00 UTC cron plus manual dispatch, then
+      commits the refreshed `web/public/data.json` and `recommendations.json`.
+      The DB is gitignored, so history is carried between runs via the actions
+      cache (restore → run → save); a >7-day gap can evict it and reset the
+      trend window, which the Postgres item in "Later" makes durable.
+      Needs `OPENAI_API_KEY` (and optionally `ANTHROPIC_API_KEY`/`GEMINI_API_KEY`)
+      as repo secrets. (2026-07-12)
 - [x] Unit tests for the aggregation logic in `metrics.py` and `rollup.py`.
       `tests/test_rollup.py` drives `build_rollups` against an in-memory SQLite
       DB (per-provider vs blended grouping, idempotent rebuild, sentiment
