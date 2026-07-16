@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { FeatureCard } from "./FeatureCard";
+import { TrendView } from "./TrendView";
 import { isTracked, type Data, type Recs } from "./types";
 
 function read<T>(file: string, fallback: T): T {
@@ -66,6 +67,9 @@ export default function Home() {
       </header>
 
       <main className="mx-auto max-w-6xl space-y-12 px-6 py-12">
+        {/* ownership trend over time */}
+        <TrendView features={data.features} dates={data.dates} />
+
         {/* feature ownership */}
         <section>
           <h2 className="mb-1 text-xl font-bold">Feature ownership</h2>

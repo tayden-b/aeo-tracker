@@ -14,8 +14,6 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Next up
 
-- [ ] Trend view in the dashboard: routing share per feature over time
-      (line chart), not just the latest snapshot.
 - [ ] Deploy the dashboard to Vercel reading the committed snapshot; put the
       live link at the top of the README.
 - [ ] Provider hardening in `providers.py`: retries with backoff, timeout
@@ -36,6 +34,13 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Done
 
+- [x] Trend view in the dashboard: a top-of-page "Ownership trend" section
+      (`web/app/TrendView.tsx`) charting the routing share of the tracked
+      product (Vault/Terraform) per feature over the collected dates — one line
+      per feature, so ownership shifts read at a glance instead of being buried
+      in each card. Features with no tracked contender are noted and left to the
+      cards. Renders only with ≥2 days of data. `next build` and the type check
+      pass. (2026-07-13)
 - [x] Scheduled collection: `.github/workflows/collect.yml` runs `run.py --n 3`
       (and `recommend.py`) on a daily 09:00 UTC cron plus manual dispatch, then
       commits the refreshed `web/public/data.json` and `recommendations.json`.
