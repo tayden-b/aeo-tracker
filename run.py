@@ -19,6 +19,7 @@ import json
 from datetime import datetime, timezone
 
 import db
+import usage
 from export import export
 from extract import extract
 from features import FEATURES
@@ -45,6 +46,7 @@ def main() -> None:
     if not providers:
         raise SystemExit("No provider API keys found. Set OPENAI_API_KEY in .env")
 
+    usage.reset()
     conn = db.connect()
     db.init_db(conn)
 
@@ -92,6 +94,7 @@ def main() -> None:
 
     out = export()
     print(f"Exported dashboard data -> {out}")
+    print(f"\n{usage.summary()}")
     print("(Run `python recommend.py` to refresh recommendations + alerts.)")
 
 

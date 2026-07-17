@@ -16,9 +16,6 @@ value — a single snapshot is a demo, a time series is a product.
 
 - [ ] Deploy the dashboard to Vercel reading the committed snapshot; put the
       live link at the top of the README.
-- [ ] Provider hardening in `providers.py`: retries with backoff, timeout
-      handling, and per-run cost/token logging so a scheduled run can't
-      silently burn money.
 
 ## Later
 
@@ -34,6 +31,15 @@ value — a single snapshot is a demo, a time series is a product.
 
 ## Done
 
+- [x] Provider hardening in `providers.py`. Retries with backoff already lived
+      in `llm_util.call_with_retries`; this adds the other two: a 60s per-request
+      timeout on every provider client (so a hung call can't stall a scheduled
+      run), and per-run token/cost accounting. `usage.py` tallies input/output
+      tokens per provider and estimates cost from a per-model price table (unknown
+      models still log tokens, just without a dollar figure); `run.py` prints the
+      summary at the end of a run. `tests/test_usage.py` covers the cost math and
+      tally with no provider call. Gemini's timeout goes through `http_options`
+      with a guarded fallback for SDK versions that don't accept it. (2026-07-17)
 - [x] Trend view in the dashboard: a top-of-page "Ownership trend" section
       (`web/app/TrendView.tsx`) charting the routing share of the tracked
       product (Vault/Terraform) per feature over the collected dates — one line

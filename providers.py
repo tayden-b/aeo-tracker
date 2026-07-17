@@ -15,9 +15,13 @@ import os
 
 from dotenv import load_dotenv
 
+import usage
 from llm_util import call_with_retries
 
 load_dotenv()
+
+# Per-request wall-clock cap so a hung provider can't stall a scheduled run.
+TIMEOUT_S = 60.0
 
 # name -> which env var holds its key, and the default model to use
 PROVIDERS: dict[str, dict[str, str]] = {
@@ -47,30 +51,48 @@ def get_answer(provider: str, prompt: str) -> str:
         from openai import OpenAI
 
         base_url = "https://api.perplexity.ai" if provider == "perplexity" else None
-        client = OpenAI(api_key=key, base_url=base_url)
+        client = OpenAI(api_key=key, base_url=base_url, timeout=TIMEOUT_S)
         resp = call_with_retries(lambda: client.chat.completions.create(
             model=model, messages=[{"role": "user", "content": prompt}]
         ))
+        u = getattr(resp, "usage", None)
+        usage.record(provider, model,
+                     getattr(u, "prompt_tokens", 0) or 0,
+                     getattr(u, "completion_tokens", 0) or 0)
         return resp.choices[0].message.content
 
     if provider == "anthropic":
         from anthropic import Anthropic
 
-        client = Anthropic(api_key=key)
+        client = Anthropic(api_key=key, timeout=TIMEOUT_S)
         resp = call_with_retries(lambda: client.messages.create(
             model=model,
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         ))
+        u = getattr(resp, "usage", None)
+        usage.record(provider, model,
+                     getattr(u, "input_tokens", 0) or 0,
+                     getattr(u, "output_tokens", 0) or 0)
         return resp.content[0].text
 
     if provider == "gemini":
         from google import genai
 
-        client = genai.Client(api_key=key)
+        # Gemini takes its timeout (ms) via http_options; guard construction so an
+        # SDK version that doesn't accept it still runs, just without the cap.
+        try:
+            client = genai.Client(api_key=key,
+                                  http_options={"timeout": int(TIMEOUT_S * 1000)})
+        except TypeError:
+            client = genai.Client(api_key=key)
         resp = call_with_retries(
             lambda: client.models.generate_content(model=model, contents=prompt)
         )
+        u = getattr(resp, "usage_metadata", None)
+        usage.record(provider, model,
+                     getattr(u, "prompt_token_count", 0) or 0,
+                     getattr(u, "candidates_token_count", 0) or 0)
         return resp.text
 
     raise ValueError(f"Unknown provider: {provider}")
